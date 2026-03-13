@@ -1,0 +1,30 @@
+# cSpell:ignore darkmode
+menu:
+  首页: / || fas fa-home
+  测试页面: /test/ || fas fa-star  # 加一行测试
+  归档: /archives/ || fas fa-archive
+  标签: /tags/ || fas fa-tags
+  分类: /categories/ || fas fa-folder-open
+  关于: /about/ || fas fa-user
+
+# 首页顶部图（适配 .jpg.jpg 后缀）
+index_img: /img/bg.jpg.jpg
+subtitle:
+  enable: true  
+  sub:  
+    - "Whitley's Tech Lab"
+    - "Code is Law. Logic is Art."
+
+local_search:
+  enable: true  
+
+darkmode:
+  enable: true  
+  button: true  
+
+# 头像配置（适配 .jpg.jpg 后缀）
+avatar:
+  img: /img/avatar.jpg.jpg
+  rounded: true        # 圆形头像（可选）
+  opacity: 1           # 透明度（可选）
+  zoom: true           # 鼠标悬浮放大（可选）
