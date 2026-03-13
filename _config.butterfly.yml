@@ -7,24 +7,34 @@ menu:
   Categories: /categories/ || fas fa-folder-open
   About: /about/ || fas fa-user
 
-# 首页顶部图（适配 .jpg.jpg 后缀）
-index_img: /img/bg.jpg.jpg
+# 全局背景相关（核心保留）
+index_img: /img/bg.jpg.jpg                # 首页顶部图
+background: url(/img/bg.jpg.jpg)         # 全局底层背景图
+background_dark: url(/img/bg.jpg.jpg)    # 深色模式背景图
+background_style: "background-attachment: fixed; background-size: cover; background-repeat: no-repeat;"  # 背景图全屏固定
+
 subtitle:
   enable: true  
   sub:  
     - "In the realm of ones and zeros."
     - "Code is Law. Logic is Art."
 
+# 功能开关
 local_search:
   enable: true  
-
 darkmode:
   enable: true  
   button: true  
 
-# 头像配置（适配 .jpg.jpg 后缀）
+# 头像配置
 avatar:
   img: /img/avatar.jpg.jpg
-  rounded: true        # 圆形头像（可选）
-  opacity: 1           # 透明度（可选）
-  zoom: true           # 鼠标悬浮放大（可选）
+  rounded: true        # 圆形头像
+  opacity: 1           # 透明度
+  zoom: true           # 鼠标悬浮放大
+
+# CSS注入（保留半透明白卡片效果）
+inject:
+  head:
+    - <link rel="stylesheet" href="/css/custom.css">
+  bottom: []

@@ -1,0 +1,36 @@
+/* 终极强制透明：覆盖所有可能的白色容器 */
+:root {
+  --card-bg: transparent !important;
+  --body-bg: transparent !important;
+}
+
+/* 全局容器透明 */
+body,
+html,
+#page,
+.layout,
+#content-inner,
+#recent-posts {
+  background: transparent !important;
+}
+
+/* 半透明白色卡片（列表+侧边栏+文章内容） */
+.recent-post-item,
+#aside-content .card-widget,
+.post-content,
+.page-content {
+  background: rgba(255, 255, 255, 0.85) !important;
+  border-radius: 8px !important;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1) !important;
+  padding: 20px !important;
+}
+
+/* 顶部图和列表间距 */
+#page-header {
+  margin-bottom: 20px !important;
+}
+
+/* 全局背景图 */
+body {
+  background: url(/img/bg.jpg.jpg) fixed center/cover no-repeat !important;
+}
