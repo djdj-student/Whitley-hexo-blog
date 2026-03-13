@@ -3,13 +3,13 @@
 ## Source: https://github.com/hexojs/hexo/
 
 # Site
-title: Hexo
-subtitle: ''
-description: ''
-keywords:
-author: John Doe
+title: Whitley's Tech Lab
+subtitle: 'Where ideas are architected, prototyped, and brought to life. '
+description: 'Technical repository by Whitley'
+keywords: DL, CV, CNN, ROS, C++, Python, Java, ML, algorithm optimization, robotic SE
+author: Whitley
 language: en
-timezone: ''
+timezone: 'Asia/Shanghai'
 
 # URL
 ## Set your site url here. For example, if you use GitHub Page, set url as 'https://username.github.io/project'

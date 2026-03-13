@@ -1,18 +1,18 @@
 # cSpell:ignore darkmode
 menu:
-  首页: / || fas fa-home
-  测试页面: /test/ || fas fa-star  # 加一行测试
-  归档: /archives/ || fas fa-archive
-  标签: /tags/ || fas fa-tags
-  分类: /categories/ || fas fa-folder-open
-  关于: /about/ || fas fa-user
+  Home: / || fas fa-home
+  Projects: /projects/ || fas fa-code  # 项目展示页（替代测试页）
+  Archives: /archives/ || fas fa-archive
+  Tags: /tags/ || fas fa-tags
+  Categories: /categories/ || fas fa-folder-open
+  About: /about/ || fas fa-user
 
 # 首页顶部图（适配 .jpg.jpg 后缀）
 index_img: /img/bg.jpg.jpg
 subtitle:
   enable: true  
   sub:  
-    - "Whitley's Tech Lab"
+    - "In the realm of ones and zeros."
     - "Code is Law. Logic is Art."
 
 local_search:
