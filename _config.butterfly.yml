@@ -33,6 +33,9 @@ avatar:
   opacity: 1           # 透明度
   zoom: true           # 鼠标悬浮放大
 
+social:
+  GitHub: https://github.com/djdj-student || fab fa-github
+  
 # CSS注入（保留半透明白卡片效果）
 inject:
   head:
