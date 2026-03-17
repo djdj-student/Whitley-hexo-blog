@@ -1,0 +1,250 @@
+<!DOCTYPE html><html lang="en" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0,viewport-fit=cover"><title>Building a PDF RAG Bot with Docker and DeepSeek: A Full Development Lifecycle | Whitley's Tech Lab</title><meta name="author" content="Whitley"><meta name="copyright" content="Whitley"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="1. Background &amp; Environment Setup1.1 Why RAG + PDF Research Papers?In the AI era, while LLMs are powerful, they still suffer from “hallucinations” when dealing with specific or real-time knowledge">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Building a PDF RAG Bot with Docker and DeepSeek: A Full Development Lifecycle">
+<meta property="og:url" content="http://localhost:4000/2026/03/15/rag-experiment-pdf-v1/index.html">
+<meta property="og:site_name" content="Whitley&#39;s Tech Lab">
+<meta property="og:description" content="1. Background &amp; Environment Setup1.1 Why RAG + PDF Research Papers?In the AI era, while LLMs are powerful, they still suffer from “hallucinations” when dealing with specific or real-time knowledge">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="http://localhost:4000/img/avatar.jpg.jpg">
+<meta property="article:published_time" content="2026-03-15T00:40:00.000Z">
+<meta property="article:modified_time" content="2026-03-16T07:53:44.396Z">
+<meta property="article:author" content="Whitley">
+<meta property="article:tag" content="RAG">
+<meta property="article:tag" content="Docker">
+<meta property="article:tag" content="DeepSeek">
+<meta property="article:tag" content="PDF_Analysis">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://localhost:4000/img/avatar.jpg.jpg"><script type="application/ld+json">{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": "Building a PDF RAG Bot with Docker and DeepSeek: A Full Development Lifecycle",
+  "url": "http://localhost:4000/2026/03/15/rag-experiment-pdf-v1/",
+  "image": "http://localhost:4000/img/avatar.jpg.jpg",
+  "datePublished": "2026-03-15T00:40:00.000Z",
+  "dateModified": "2026-03-16T07:53:44.396Z",
+  "author": [
+    {
+      "@type": "Person",
+      "name": "Whitley",
+      "url": "http://localhost:4000"
+    }
+  ]
+}</script><link rel="shortcut icon" href="/img/favicon.png"><link rel="canonical" href="http://localhost:4000/2026/03/15/rag-experiment-pdf-v1/index.html"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css?v=5.5.4"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@7.1.0/css/all.min.css"><script>
+    (() => {
+      
+    const saveToLocal = {
+      set: (key, value, ttl) => {
+        if (!ttl) return
+        const expiry = Date.now() + ttl * 86400000
+        localStorage.setItem(key, JSON.stringify({ value, expiry }))
+      },
+      get: key => {
+        const itemStr = localStorage.getItem(key)
+        if (!itemStr) return undefined
+        const { value, expiry } = JSON.parse(itemStr)
+        if (Date.now() > expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return value
+      }
+    }
+
+    window.btf = {
+      saveToLocal,
+      getScript: (url, attr = {}) => new Promise((resolve, reject) => {
+        const script = document.createElement('script')
+        script.src = url
+        script.async = true
+        Object.entries(attr).forEach(([key, val]) => script.setAttribute(key, val))
+        script.onload = script.onreadystatechange = () => {
+          if (!script.readyState || /loaded|complete/.test(script.readyState)) resolve()
+        }
+        script.onerror = reject
+        document.head.appendChild(script)
+      }),
+      getCSS: (url, id) => new Promise((resolve, reject) => {
+        const link = document.createElement('link')
+        link.rel = 'stylesheet'
+        link.href = url
+        if (id) link.id = id
+        link.onload = link.onreadystatechange = () => {
+          if (!link.readyState || /loaded|complete/.test(link.readyState)) resolve()
+        }
+        link.onerror = reject
+        document.head.appendChild(link)
+      }),
+      addGlobalFn: (key, fn, name = false, parent = window) => {
+        if (!false && key.startsWith('pjax')) return
+        const globalFn = parent.globalFn || {}
+        globalFn[key] = globalFn[key] || {}
+        globalFn[key][name || Object.keys(globalFn[key]).length] = fn
+        parent.globalFn = globalFn
+      }
+    }
+  
+      
+      const activateDarkMode = () => {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      const activateLightMode = () => {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+
+      btf.activateDarkMode = activateDarkMode
+      btf.activateLightMode = activateLightMode
+
+      const theme = saveToLocal.get('theme')
+    
+          theme === 'dark' ? activateDarkMode() : theme === 'light' ? activateLightMode() : null
+        
+      
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        document.documentElement.classList.toggle('hide-aside', asideStatus === 'hide')
+      }
+    
+      
+    const detectApple = () => {
+      if (/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)) {
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+  
+    })()
+  </script><script>const GLOBAL_CONFIG = {
+  root: '/',
+  algolia: undefined,
+  localSearch: undefined,
+  translate: undefined,
+  highlight: {"plugin":"highlight.js","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":false,"highlightFullpage":false,"highlightMacStyle":false},
+  copy: {
+    success: 'Copy Successful',
+    error: 'Copy Failed',
+    noSupport: 'Browser Not Supported'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '',
+  dateSuffix: {
+    just: 'Just now',
+    min: 'minutes ago',
+    hour: 'hours ago',
+    day: 'days ago',
+    month: 'months ago'
+  },
+  copyright: undefined,
+  lightbox: 'null',
+  Snackbar: undefined,
+  infinitegrid: {
+    js: 'https://cdn.jsdelivr.net/npm/@egjs/infinitegrid@4.13.0/dist/infinitegrid.min.js',
+    buttonText: 'Load More'
+  },
+  isPhotoFigcaption: false,
+  islazyloadPlugin: false,
+  isAnchor: false,
+  percent: {
+    toc: true,
+    rightside: false,
+  },
+  autoDarkmode: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: 'Building a PDF RAG Bot with Docker and DeepSeek: A Full Development Lifecycle',
+  isHighlightShrink: false,
+  isToc: true,
+  pageType: 'post'
+}</script><link rel="stylesheet" href="/css/custom.css"><meta name="generator" content="Hexo 7.3.0"></head><body><div class="bg-animation" id="web_bg" style="background-image: url(/url(/img/bg.jpg.jpg));"></div><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img text-center"><img src="/img/avatar.jpg.jpg" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="site-data text-center"><a href="/archives/"><div class="headline">Articles</div><div class="length-num">3</div></a><a href="/tags/"><div class="headline">Tags</div><div class="length-num">7</div></a><a href="/categories/"><div class="headline">Categories</div><div class="length-num">2</div></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> Home</span></a></div><div class="menus_item"><a class="site-page" href="/projects/"><i class="fa-fw fas fa-code"></i><span> Projects</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> Archives</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> Tags</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> Categories</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-user"></i><span> About</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header" style="background-image: url(/img/rag-pdf-bg.jpg);"><nav id="nav"><span id="blog-info"><a class="nav-site-title" href="/"><span class="site-name">Whitley's Tech Lab</span></a><a class="nav-page-title" href="/"><span class="site-name">Building a PDF RAG Bot with Docker and DeepSeek: A Full Development Lifecycle</span><span class="site-name"><i class="fa-solid fa-circle-arrow-left"></i><span>  Back to Home</span></span></a></span><div id="menus"><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> Home</span></a></div><div class="menus_item"><a class="site-page" href="/projects/"><i class="fa-fw fas fa-code"></i><span> Projects</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> Archives</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> Tags</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> Categories</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-user"></i><span> About</span></a></div></div><div id="toggle-menu"><span class="site-page"><i class="fas fa-bars fa-fw"></i></span></div></div></nav><div id="post-info"><h1 class="post-title">Building a PDF RAG Bot with Docker and DeepSeek: A Full Development Lifecycle</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">Created</span><time class="post-meta-date-created" datetime="2026-03-15T00:40:00.000Z" title="Created 2026-03-15 08:40:00">2026-03-15</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">Updated</span><time class="post-meta-date-updated" datetime="2026-03-16T07:53:44.396Z" title="Updated 2026-03-16 15:53:44">2026-03-16</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/AI-Engineering/">AI_Engineering</a></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title=""><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">Post Views:</span><span id="busuanzi_value_page_pv"><i class="fa-solid fa-spinner fa-spin"></i></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="container post-content" id="article-container"><h2 id="1-Background-Environment-Setup"><a href="#1-Background-Environment-Setup" class="headerlink" title="1. Background &amp; Environment Setup"></a>1. Background &amp; Environment Setup</h2><h3 id="1-1-Why-RAG-PDF-Research-Papers"><a href="#1-1-Why-RAG-PDF-Research-Papers" class="headerlink" title="1.1 Why RAG + PDF Research Papers?"></a>1.1 Why RAG + PDF Research Papers?</h3><p>In the AI era, while LLMs are powerful, they still suffer from “hallucinations” when dealing with specific or real-time knowledge—such as the latest scientific papers. <strong>RAG (Retrieval-Augmented Generation)</strong> acts as a dynamic, real-time knowledge base attached to the AI.</p>
+<p>The core challenge of this experiment lies in <strong>PDF Parsing</strong>. Research papers often feature double-column layouts and complex formulas, requiring a system that doesn’t just “read” text, but truly “understands” the document structure.</p>
+<h3 id="1-2-Core-Architecture-Docker-DeepSeek"><a href="#1-2-Core-Architecture-Docker-DeepSeek" class="headerlink" title="1.2 Core Architecture: Docker + DeepSeek"></a>1.2 Core Architecture: Docker + DeepSeek</h3><p>To achieve high performance, low cost, and high portability, I chose a lightweight, deployable, and full-stack architecture:</p>
+<ul>
+<li><strong>DeepSeek-R1</strong>: The foundational LLM for reasoning and generation.</li>
+<li><strong>LangChain</strong>: Orchestrating the RAG pipeline (Loading → Splitting → Embedding → Retrieval → Generation).</li>
+<li><strong>Sentence-Transformers</strong>: Local open-source embedding models.</li>
+<li><strong>FAISS</strong>: A lightweight vector database.</li>
+<li><strong>Streamlit</strong>: For rapid Web interface development.</li>
+<li><strong>Docker + Docker Compose</strong>: Containerizing the entire environment.</li>
+</ul>
+<h3 id="1-3-Containerized-Deployment-in-Action"><a href="#1-3-Containerized-Deployment-in-Action" class="headerlink" title="1.3 Containerized Deployment in Action"></a>1.3 Containerized Deployment in Action</h3><p>I developed a streamlined <code>docker-compose.yml</code> to drive the system, focusing on <strong>development efficiency</strong> and <strong>security isolation</strong>:</p>
+<figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">services:</span></span><br><span class="line">  <span class="attr">app:</span></span><br><span class="line">    <span class="attr">build:</span> <span class="string">.</span></span><br><span class="line">    <span class="comment"># Port mapping: Access Streamlit via localhost:7887</span></span><br><span class="line">    <span class="attr">ports:</span></span><br><span class="line">      <span class="bullet">-</span> <span class="string">&quot;7887:8501&quot;</span> </span><br><span class="line">    </span><br><span class="line">    <span class="comment"># Security: Manage DeepSeek API Key via env file</span></span><br><span class="line">    <span class="attr">env_file:</span></span><br><span class="line">      <span class="bullet">-</span> <span class="string">.env</span></span><br><span class="line">    </span><br><span class="line">    <span class="comment"># Efficiency: Mount current directory for &quot;hot-reloading&quot;</span></span><br><span class="line">    <span class="attr">volumes:</span></span><br><span class="line">      <span class="bullet">-</span> <span class="string">.:/app</span></span><br><span class="line">    </span><br><span class="line">    <span class="comment"># Interactive mode: For real-time debugging of PDF parsing errors</span></span><br><span class="line">    <span class="attr">stdin_open:</span> <span class="literal">true</span></span><br><span class="line">    <span class="attr">tty:</span> <span class="literal">true</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="2-PDF-Parsing-Knowledge-Base-Construction"><a href="#2-PDF-Parsing-Knowledge-Base-Construction" class="headerlink" title="2. PDF Parsing &amp; Knowledge Base Construction"></a>2. PDF Parsing &amp; Knowledge Base Construction</h2><p>This section is the core essence of RAG. The goal: How to make DeepSeek “read” the static text trapped in PDFs?</p>
+<h3 id="2-1-The-“Deep-Water”-of-PDF-Parsing"><a href="#2-1-The-“Deep-Water”-of-PDF-Parsing" class="headerlink" title="2.1 The “Deep Water” of PDF Parsing"></a>2.1 The “Deep Water” of PDF Parsing</h3><p>Scientific papers are rarely simple text. Their double-column layouts and complex formatting mean that a “brute-force” text extraction will often scramble the semantic meaning.</p>
+<h3 id="2-2-Practice-Extracting-Content-with-Python"><a href="#2-2-Practice-Extracting-Content-with-Python" class="headerlink" title="2.2 Practice: Extracting Content with Python"></a>2.2 Practice: Extracting Content with Python</h3><p>In this experiment, I used PyMuPDF (fitz). It’s incredibly fast and does a great job of preserving the document’s logical structure.<br>import fitz  # PyMuPDF library</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">def</span> <span class="title function_">extract_text_from_pdf</span>(<span class="params">pdf_path</span>):</span><br><span class="line">    <span class="comment"># Open the PDF file</span></span><br><span class="line">    doc = fitz.<span class="built_in">open</span>(pdf_path)</span><br><span class="line">    full_text = <span class="string">&quot;&quot;</span></span><br><span class="line">    </span><br><span class="line">    <span class="keyword">for</span> page <span class="keyword">in</span> doc:</span><br><span class="line">        <span class="comment"># Extract text from the current page</span></span><br><span class="line">        full_text += page.get_text()</span><br><span class="line">        </span><br><span class="line">    <span class="keyword">return</span> full_text</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>Pro Tip: For double-column papers, consider using page.get_text(“blocks”). This reads content by physical blocks, preventing the text from left and right columns from getting mixed up.</p>
+</blockquote>
+<h2 id="3-LLM-Integration-Connecting-the-DeepSeek-Engine"><a href="#3-LLM-Integration-Connecting-the-DeepSeek-Engine" class="headerlink" title="3. LLM Integration: Connecting the DeepSeek Engine"></a>3. LLM Integration: Connecting the DeepSeek Engine</h2><p>With structured text blocks ready, the next step is building the bridge to DeepSeek-R1. Here, we don’t just send a query; we feed the “retrieved PDF snippets” as context to the model.</p>
+<h3 id="3-1-Why-DeepSeek-R1"><a href="#3-1-Why-DeepSeek-R1" class="headerlink" title="3.1 Why DeepSeek-R1?"></a>3.1 Why DeepSeek-R1?</h3><p>DeepSeek’s Chain of Thought (CoT) capability is exceptional for complex academic papers. It identifies logical correlations within experimental data rather than just repeating words.</p>
+<h3 id="3-2-Implementation-Python"><a href="#3-2-Implementation-Python" class="headerlink" title="3.2 Implementation Python"></a>3.2 Implementation Python</h3><p>Here is the core function running inside the container, utilizing the API Key configured in our .env file:</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> os</span><br><span class="line"><span class="keyword">from</span> openai <span class="keyword">import</span> OpenAI</span><br><span class="line"><span class="keyword">from</span> dotenv <span class="keyword">import</span> load_dotenv</span><br><span class="line"></span><br><span class="line">load_dotenv()</span><br><span class="line"></span><br><span class="line">client = OpenAI(</span><br><span class="line">    api_key=os.getenv(<span class="string">&quot;DEEPSEEK_API_KEY&quot;</span>), </span><br><span class="line">    base_url=<span class="string">&quot;[https://api.deepseek.com](https://api.deepseek.com)&quot;</span></span><br><span class="line">)</span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">ask_deepseek</span>(<span class="params">context, query</span>):</span><br><span class="line">    <span class="comment"># Constructing the Prompt: Forcing the model to answer based on Context</span></span><br><span class="line">    prompt = <span class="string">f&quot;Answer the question based on the following PDF content:\n<span class="subst">&#123;context&#125;</span>\n\nQuestion: <span class="subst">&#123;query&#125;</span>&quot;</span></span><br><span class="line">    </span><br><span class="line">    response = client.chat.completions.create(</span><br><span class="line">        model=<span class="string">&quot;deepseek-chat&quot;</span>,</span><br><span class="line">        messages=[</span><br><span class="line">            &#123;<span class="string">&quot;role&quot;</span>: <span class="string">&quot;system&quot;</span>, <span class="string">&quot;content&quot;</span>: <span class="string">&quot;You are a professional academic assistant. Provide accurate answers based on the provided document.&quot;</span>&#125;,</span><br><span class="line">            &#123;<span class="string">&quot;role&quot;</span>: <span class="string">&quot;user&quot;</span>, <span class="string">&quot;content&quot;</span>: prompt&#125;,</span><br><span class="line">        ],</span><br><span class="line">        stream=<span class="literal">False</span></span><br><span class="line">    )</span><br><span class="line">    <span class="keyword">return</span> response.choices[<span class="number">0</span>].message.content</span><br></pre></td></tr></table></figure>
+
+<h3 id="3-3-Prompt-Engineering-Avoiding-Hallucinations"><a href="#3-3-Prompt-Engineering-Avoiding-Hallucinations" class="headerlink" title="3.3 Prompt Engineering: Avoiding Hallucinations"></a>3.3 Prompt Engineering: Avoiding Hallucinations</h3><p>A common issue in RAG is the AI “making things up” beyond the document. To prevent this, I added a strict constraint to the System Prompt.<br>Core Strategy: “If the information is not present in the document, simply answer ‘Sorry, this content is not mentioned in the document.’ Strictly avoid hallucinations.”</p>
+<h2 id="4-Hard-earned-Lessons-Networking-Versioning-Issues"><a href="#4-Hard-earned-Lessons-Networking-Versioning-Issues" class="headerlink" title="4. Hard-earned Lessons: Networking &amp; Versioning Issues"></a>4. Hard-earned Lessons: Networking &amp; Versioning Issues</h2><p>The biggest challenge wasn’t the algorithm, but the “war” against networking issues and dependency conflicts. Here are the essential fixes:</p>
+<h3 id="4-1-Pip-Timeouts-Mirror-Acceleration"><a href="#4-1-Pip-Timeouts-Mirror-Acceleration" class="headerlink" title="4.1 Pip Timeouts &amp; Mirror Acceleration"></a>4.1 Pip Timeouts &amp; Mirror Acceleration</h3><p>The Pain Point: pip install in Docker often triggers ReadTimeoutError due to network instability, causing the build to fail.<br>The Fix: Use a local mirror (like Tsinghua) and increase timeout settings in your Dockerfile:<br>Accelerate build with a mirror and disable cache for stability</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">RUN pip install --no-cache-dir \</span><br><span class="line">    -i [https://pypi.tuna.tsinghua.edu.cn/simple](https://pypi.tuna.tsinghua.edu.cn/simple) \</span><br><span class="line">    -r requirements.txt</span><br></pre></td></tr></table></figure>
+
+<h3 id="4-2-LangChain-“Version-Hell”"><a href="#4-2-LangChain-“Version-Hell”" class="headerlink" title="4.2 LangChain “Version Hell”"></a>4.2 LangChain “Version Hell”</h3><p>The Pain Point: LangChain evolves rapidly, and APIs are often not backward compatible. A simple pip install langchain can break your code with ImportError.<br>The Fix: Lock your versions strictly in requirements.txt. Here is my “Golden Combination”:</p>
+<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">langchain==0.1.12</span><br><span class="line">langchain-community==0.0.28</span><br><span class="line">langchain-openai==0.0.8</span><br><span class="line">python-dotenv==1.0.1</span><br><span class="line">PyMuPDF==1.23.26</span><br></pre></td></tr></table></figure>
+
+<h3 id="4-3-Missing-System-Dependencies"><a href="#4-3-Missing-System-Dependencies" class="headerlink" title="4.3 Missing System Dependencies"></a>4.3 Missing System Dependencies</h3><p>The Pain Point: Libraries like fitz won’t run on lightweight images (like python:3.9-slim) because they lack underlying GUI&#x2F;graphics libraries.<br>The Fix: Install system-level dependencies before the pip install step:</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">RUN apt-get update &amp;&amp; apt-get install -y \</span><br><span class="line">    libgl1-mesa-glx \</span><br><span class="line">    &amp;&amp; <span class="built_in">rm</span> -rf /var/lib/apt/lists/*</span><br></pre></td></tr></table></figure>
+
+<h2 id="5-中文版"><a href="#5-中文版" class="headerlink" title="5. 中文版"></a>5. 中文版</h2><p>1.实验背景与环境构建</p>
+<p>1.1 为什么选择 RAG + PDF 论文？<br>在AI时代，大模型虽然强大，但对于特定、实时的知识仍存在“幻觉”,比如说如最新的科研论文。<strong>RAG ：Retrieval-Augmented Generation</strong> 就像是给AI挂载了一个实时更新的知识库。</p>
+<p>本次实验的挑战在于 <strong>PDF 解析</strong>。科研论文通常包含双栏排版和复杂的公式，这要求系统不仅要能“读”到文字，更要能“理解”文档结构。</p>
+<p>1.2 核心架构：Docker + DeepSeek<br>为了实现高性能、低成本且易于迁移的开发环境，我选择了以下组合：<br>本项目采用轻量化、可部署、可移植的全栈架构：</p>
+<ul>
+<li><strong>DeepSeek-R1</strong>：作为基座大模型，负责理解与生成</li>
+<li><strong>LangChain</strong>：串联RAG全流程（加载 → 分割 → 向量化 → 检索 → 生成）</li>
+<li><strong>Sentence-Transformers</strong>：本地开源Embedding模型</li>
+<li><strong>FAISS</strong>：轻量级向量数据库</li>
+<li><strong>Streamlit</strong>：快速搭建 Web 交互界面</li>
+<li><strong>Docker + Docker Compose</strong>：环境容器化</li>
+</ul>
+<p>1.3 容器化部署实战<br>我编写了一个精简高效的 <code>docker-compose.yml</code> 来驱动整个系统。其核心逻辑在于<strong>开发效率</strong>与<strong>安全隔离</strong>：</p>
+<figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">services:</span></span><br><span class="line">  <span class="attr">app:</span></span><br><span class="line">    <span class="attr">build:</span> <span class="string">.</span></span><br><span class="line">    <span class="comment"># 端口映射：浏览器输入 localhost:7887 即可访问 Streamlit 界面</span></span><br><span class="line">    <span class="attr">ports:</span></span><br><span class="line">      <span class="bullet">-</span> <span class="string">&quot;7887:8501&quot;</span> </span><br><span class="line">    </span><br><span class="line">    <span class="comment"># 安全性：通过环境变量文件管理 DeepSeek API Key</span></span><br><span class="line">    <span class="attr">env_file:</span></span><br><span class="line">      <span class="bullet">-</span> <span class="string">.env</span></span><br><span class="line">    </span><br><span class="line">    <span class="comment"># 开发效率：挂载当前目录，实现代码修改后的“热更新”</span></span><br><span class="line">    <span class="attr">volumes:</span></span><br><span class="line">      <span class="bullet">-</span> <span class="string">.:/app</span></span><br><span class="line">    </span><br><span class="line">    <span class="comment"># 交互模式：方便在终端实时调试 PDF 解析报错</span></span><br><span class="line">    <span class="attr">stdin_open:</span> <span class="literal">true</span></span><br><span class="line">    <span class="attr">tty:</span> <span class="literal">true</span></span><br></pre></td></tr></table></figure>
+
+<p>2.PDF 解析与知识库构建</p>
+<p>这一部分是RAG的灵魂。我要解决的是：<strong>如何让 DeepSeek 读懂那些“死”在 PDF 里的文字？</strong></p>
+<p>2.1 PDF 解析的“深水区”<br>科研论文通常不是简单的长文本，它们存在双栏布局和复杂的排版。如果直接暴力读取，语义会被打乱。</p>
+<p>2.2 实战：使用 Python 提取核心内容<br>在我的实验中，我使用了 **<code>PyMuPDF</code> (fitz)**。它的优势在于速度极快，且能较好地保留文档的逻辑结构。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> fitz  <span class="comment"># PyMuPDF 库</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">extract_text_from_pdf</span>(<span class="params">pdf_path</span>):</span><br><span class="line">    <span class="comment"># 打开 PDF 文件</span></span><br><span class="line">    doc = fitz.<span class="built_in">open</span>(pdf_path)</span><br><span class="line">    full_text = <span class="string">&quot;&quot;</span></span><br><span class="line">    </span><br><span class="line">    <span class="keyword">for</span> page <span class="keyword">in</span> doc:</span><br><span class="line">        <span class="comment"># 提取当前页面的文本</span></span><br><span class="line">        full_text += page.get_text()</span><br><span class="line">        </span><br><span class="line">    <span class="keyword">return</span> full_text</span><br></pre></td></tr></table></figure>
+<p>实验心得：对于双栏论文，建议使用 page.get_text(“blocks”),这样可以按物理区块读取，避免左右两栏文字混在一起。</p>
+<p>3.核心交互：接入 DeepSeek 推理引擎 LLM Integration</p>
+<p>有了结构化的文本块，下一步就是建立与 <strong>DeepSeek-R1</strong> 的对话桥梁。在这一步中，我们不仅要发送问题，还要把“检索到的 PDF 片段”作为背景知识一并塞给模型。</p>
+<p>3.1 为什么选择 DeepSeek-R1？<br>在处理复杂的学术论文时，DeepSeek 的<strong>思维链</strong>能力非常出众。它能识别出论文实验数据之间的逻辑关联，而不是简单地复述文字。</p>
+<p>3.2 调用代码实战<br>以下是我在容器中运行的核心调用函数。注意我们使用了 <code>.env</code> 文件中配置的 API Key：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> os</span><br><span class="line"><span class="keyword">from</span> openai <span class="keyword">import</span> OpenAI</span><br><span class="line"><span class="keyword">from</span> dotenv <span class="keyword">import</span> load_dotenv</span><br><span class="line"></span><br><span class="line"><span class="comment"># 加载环境变量</span></span><br><span class="line">load_dotenv()</span><br><span class="line"></span><br><span class="line">client = OpenAI(</span><br><span class="line">    api_key=os.getenv(<span class="string">&quot;DEEPSEEK_API_KEY&quot;</span>), </span><br><span class="line">    base_url=<span class="string">&quot;[https://api.deepseek.com](https://api.deepseek.com)&quot;</span></span><br><span class="line">)</span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">ask_deepseek</span>(<span class="params">context, query</span>):</span><br><span class="line">    <span class="comment"># 构建 Prompt：强制模型基于 Context 回答</span></span><br><span class="line">    prompt = <span class="string">f&quot;根据以下 PDF 内容回答问题：\n<span class="subst">&#123;context&#125;</span>\n\n问题：<span class="subst">&#123;query&#125;</span>&quot;</span></span><br><span class="line">    </span><br><span class="line">    response = client.chat.completions.create(</span><br><span class="line">        model=<span class="string">&quot;deepseek-chat&quot;</span>,</span><br><span class="line">        messages=[</span><br><span class="line">            &#123;<span class="string">&quot;role&quot;</span>: <span class="string">&quot;system&quot;</span>, <span class="string">&quot;content&quot;</span>: <span class="string">&quot;你是一个专业的学术助手，请基于提供的文档内容给出准确回答。&quot;</span>&#125;,</span><br><span class="line">            &#123;<span class="string">&quot;role&quot;</span>: <span class="string">&quot;user&quot;</span>, <span class="string">&quot;content&quot;</span>: prompt&#125;,</span><br><span class="line">        ],</span><br><span class="line">        stream=<span class="literal">False</span></span><br><span class="line">    )</span><br><span class="line">    <span class="keyword">return</span> response.choices[<span class="number">0</span>].message.content</span><br></pre></td></tr></table></figure>
+
+<p>3.3 避坑指南：Prompt 的艺术<br>在RAG实验中，最容易出现的问题是AI“脱离文档瞎编”。为了防止这种情况，我在System Prompt中加入了强约束，这能显著降低模型的“幻觉”。</p>
+<p>核心策略： “如果文档中没有相关信息，请直接回答‘抱歉，文档中未提及此内容’，严禁幻觉。”</p>
+<p>4.环境构建“血泪史”：网络与版本的双重毒打</p>
+<p>在搭建 RAG 开发环境时，我遇到的最大挑战不是算法，而是网络和依赖库的版本冲突。以下是两个必须“抄作业”的解决方案：</p>
+<p>4.1 Pip 下载超时与镜像源加速<br><strong>痛点：</strong> 在 Docker 中执行 <code>pip install</code> 时，默认源经常因为网络抖动导致 <code>ReadTimeoutError</code>，整个镜像构建会直接崩溃。</p>
+<p><strong>关键行修正：</strong><br>在 <code>Dockerfile</code> 中，务必使用国内镜像源（如清华源）并增加超时设置：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 使用镜像源加速并忽略缓存，确保构建稳定</span></span><br><span class="line">RUN pip install --no-cache-dir \</span><br><span class="line">    -i [https://pypi.tuna.tsinghua.edu.cn/simple](https://pypi.tuna.tsinghua.edu.cn/simple) \</span><br><span class="line">    -r requirements.txt</span><br></pre></td></tr></table></figure>
+
+<p>4.2 LangChain 的“版本地狱”<br>痛点：LangChain更新极快，新旧版本API不兼容。如果直接 pip install langchain，下载的最早或最新版本往往会导致程序运行报 ImportError。<br>关键行修正：<br>不要在 Dockerfile 里直接写包名，而是在 requirements.txt 中严格锁定版本。这是我实验成功的“黄金组合”：</p>
+<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">langchain==0.1.12</span><br><span class="line">langchain-community==0.0.28</span><br><span class="line">langchain-openai==0.0.8</span><br><span class="line">python-dotenv==1.0.1</span><br><span class="line">PyMuPDF==1.23.26</span><br></pre></td></tr></table></figure>
+
+<p>4.3 缺失的系统依赖库<br>痛点： 很多 PDF 解析库如 fitz在轻量级 Docker 镜像如 python:3.9-slim中无法直接运行，因为缺少底层的图形处理库。</p>
+<p>关键行修正：在 pip install 之前，必须在 Dockerfile 里先安装系统级依赖。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">RUN apt-get update &amp;&amp; apt-get install -y \</span><br><span class="line">    libgl1-mesa-glx \</span><br><span class="line">    &amp;&amp; <span class="built_in">rm</span> -rf /var/lib/apt/lists/*</span><br></pre></td></tr></table></figure>
+
+
+
+
+
+
+</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta"><i class="fas fa-circle-user fa-fw"></i>Author: </span><span class="post-copyright-info"><a href="http://localhost:4000">Whitley</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta"><i class="fas fa-square-arrow-up-right fa-fw"></i>Link: </span><span class="post-copyright-info"><a href="http://localhost:4000/2026/03/15/rag-experiment-pdf-v1/">http://localhost:4000/2026/03/15/rag-experiment-pdf-v1/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta"><i class="fas fa-circle-exclamation fa-fw"></i>Copyright Notice: </span><span class="post-copyright-info">All articles on this blog are licensed under <a target="_blank" rel="noopener" href="https://creativecommons.org/licenses/by-nc-sa/4.0/">CC BY-NC-SA 4.0</a> unless otherwise stated.</span></div></div><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/RAG/">RAG</a><a class="post-meta__tags" href="/tags/Docker/">Docker</a><a class="post-meta__tags" href="/tags/DeepSeek/">DeepSeek</a><a class="post-meta__tags" href="/tags/PDF-Analysis/">PDF_Analysis</a></div><div class="post-share"><div class="social-share" data-image="/img/avatar.jpg.jpg" data-sites="facebook,x,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1.1.6/sharejs/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1.1.6/sharejs/dist/js/social-share.min.js" defer></script></div></div><nav class="pagination-post" id="pagination"><a class="pagination-related full-width" href="/2026/03/13/Beyond-sRGB-and-HSV-Why-HVI-is-the-Future-of-Low-Light-Image-Restoration/" title="Beyond sRGB and HSV: Why HVI is the Future of Low-Light Image Restoration"><div class="cover" style="background: var(--default-bg-color)"></div><div class="info text-right"><div class="info-1"><div class="info-item-1">Next</div><div class="info-item-2">Beyond sRGB and HSV: Why HVI is the Future of Low-Light Image Restoration</div></div><div class="info-2"><div class="info-item-1">Introduction: The Limitations of Traditional Color Spaces in Low-Light ImagingLow-light image restoration is a cornerstone of computer vision, powering critical applications from surveillance systems to mobile photography and autonomous driving. For decades, the field has relied on two ubiquitous color spaces—sRGB and HSV—as the foundation for processing visual data. Yet these models were never designed for extreme low-light conditions: sRGB crushes dark-toned pixels into a narrow dynamic ran...</div></div></div></a></nav></div><div class="aside-content" id="aside-content"><div class="card-widget card-info text-center"><div class="avatar-img"><img src="/img/avatar.jpg.jpg" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info-name">Whitley</div><div class="author-info-description">Technical repository by Whitley</div><div class="site-data"><a href="/archives/"><div class="headline">Articles</div><div class="length-num">3</div></a><a href="/tags/"><div class="headline">Tags</div><div class="length-num">7</div></a><a href="/categories/"><div class="headline">Categories</div><div class="length-num">2</div></a></div><a id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/xxxxxx"><i class="fab fa-github"></i><span>Follow Me</span></a></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn fa-shake"></i><span>Announcement</span></div><div class="announcement_content">This is my Blog</div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>Contents</span><span class="toc-percentage"></span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#1-Background-Environment-Setup"><span class="toc-number">1.</span> <span class="toc-text">1. Background &amp; Environment Setup</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-1-Why-RAG-PDF-Research-Papers"><span class="toc-number">1.1.</span> <span class="toc-text">1.1 Why RAG + PDF Research Papers?</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#1-2-Core-Architecture-Docker-DeepSeek"><span class="toc-number">1.2.</span> <span class="toc-text">1.2 Core Architecture: Docker + DeepSeek</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#1-3-Containerized-Deployment-in-Action"><span class="toc-number">1.3.</span> <span class="toc-text">1.3 Containerized Deployment in Action</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-PDF-Parsing-Knowledge-Base-Construction"><span class="toc-number">2.</span> <span class="toc-text">2. PDF Parsing &amp; Knowledge Base Construction</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#2-1-The-%E2%80%9CDeep-Water%E2%80%9D-of-PDF-Parsing"><span class="toc-number">2.1.</span> <span class="toc-text">2.1 The “Deep Water” of PDF Parsing</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-2-Practice-Extracting-Content-with-Python"><span class="toc-number">2.2.</span> <span class="toc-text">2.2 Practice: Extracting Content with Python</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3-LLM-Integration-Connecting-the-DeepSeek-Engine"><span class="toc-number">3.</span> <span class="toc-text">3. LLM Integration: Connecting the DeepSeek Engine</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#3-1-Why-DeepSeek-R1"><span class="toc-number">3.1.</span> <span class="toc-text">3.1 Why DeepSeek-R1?</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-2-Implementation-Python"><span class="toc-number">3.2.</span> <span class="toc-text">3.2 Implementation Python</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-3-Prompt-Engineering-Avoiding-Hallucinations"><span class="toc-number">3.3.</span> <span class="toc-text">3.3 Prompt Engineering: Avoiding Hallucinations</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#4-Hard-earned-Lessons-Networking-Versioning-Issues"><span class="toc-number">4.</span> <span class="toc-text">4. Hard-earned Lessons: Networking &amp; Versioning Issues</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#4-1-Pip-Timeouts-Mirror-Acceleration"><span class="toc-number">4.1.</span> <span class="toc-text">4.1 Pip Timeouts &amp; Mirror Acceleration</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-2-LangChain-%E2%80%9CVersion-Hell%E2%80%9D"><span class="toc-number">4.2.</span> <span class="toc-text">4.2 LangChain “Version Hell”</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-3-Missing-System-Dependencies"><span class="toc-number">4.3.</span> <span class="toc-text">4.3 Missing System Dependencies</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#5-%E4%B8%AD%E6%96%87%E7%89%88"><span class="toc-number">5.</span> <span class="toc-text">5. 中文版</span></a></li></ol></div></div><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>Recent Posts</span></div><div class="aside-list"><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2026/03/15/rag-experiment-pdf-v1/" title="Building a PDF RAG Bot with Docker and DeepSeek: A Full Development Lifecycle">Building a PDF RAG Bot with Docker and DeepSeek: A Full Development Lifecycle</a><time datetime="2026-03-15T00:40:00.000Z" title="Created 2026-03-15 08:40:00">2026-03-15</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2026/03/13/Beyond-sRGB-and-HSV-Why-HVI-is-the-Future-of-Low-Light-Image-Restoration/" title="Beyond sRGB and HSV: Why HVI is the Future of Low-Light Image Restoration">Beyond sRGB and HSV: Why HVI is the Future of Low-Light Image Restoration</a><time datetime="2026-03-13T08:00:00.000Z" title="Created 2026-03-13 16:00:00">2026-03-13</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2026/03/12/hello-world/" title="Hello World">Hello World</a><time datetime="2026-03-12T12:56:49.271Z" title="Created 2026-03-12 20:56:49">2026-03-12</time></div></div></div></div></div></div></main><footer id="footer"><div class="footer-other"><div class="footer-copyright"><span class="copyright">&copy;&nbsp;2025 - 2026 By Whitley</span><span class="framework-info"><span>Framework </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo 7.3.0</a><span class="footer-separator">|</span><span>Theme </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly 5.5.4</a></span></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="Reading Mode"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="Toggle Between Light and Dark Mode"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="Toggle Between Single-column and Double-column"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside-config" type="button" title="Settings"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="Table of Contents"><i class="fas fa-list-ul"></i></button><button id="go-up" type="button" title="Back to Top"><span class="scroll-percent"></span><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js?v=5.5.4"></script><script src="/js/main.js?v=5.5.4"></script><div class="js-pjax"></div><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script></div></body></html>

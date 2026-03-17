@@ -10,7 +10,7 @@ top_img: /img/hvi-bg.jpg
 ---
 
 # Introduction: The Limitations of Traditional Color Spaces in Low-Light Imaging
-Low-light image restoration (LLIR) is a cornerstone of computer vision (CV), powering critical applications from surveillance systems to mobile photography and autonomous driving. For decades, the field has relied on two ubiquitous color spaces—sRGB and HSV—as the foundation for processing visual data. Yet these models were never designed for extreme low-light conditions: sRGB crushes dark-toned pixels into a narrow dynamic range, while HSV fails to capture subtle chromatic variations in dimly lit scenes, leading to irreversible detail loss and color distortion.
+Low-light image restoration is a cornerstone of computer vision, powering critical applications from surveillance systems to mobile photography and autonomous driving. For decades, the field has relied on two ubiquitous color spaces—sRGB and HSV—as the foundation for processing visual data. Yet these models were never designed for extreme low-light conditions: sRGB crushes dark-toned pixels into a narrow dynamic range, while HSV fails to capture subtle chromatic variations in dimly lit scenes, leading to irreversible detail loss and color distortion.
 
 A revolutionary new approach—HVI (Human Visual Inspired) color space—addresses these inherent flaws. Built to mimic the human eye’s biological adaptation to low light, HVI redefines how we represent and restore dark images, outperforming sRGB and HSV across all key LLIR metrics. This blog unpacks why traditional color spaces fall short in low-light scenarios, how HVI leverages insights from color vision research (validated via rigorous experimental frameworks), and why it is poised to become the new industry standard for low-light image processing.
 
@@ -27,12 +27,12 @@ The human eye outperforms sRGB/HSV in low light by adapting via rod cells (light
 ## 2. Experimental Design: Validating Color Space Performance
 To rigorously compare HVI, sRGB, and HSV, researchers designed a comprehensive experimental framework covering four core color vision tasks—object color classification, local attribute color classification, color object segmentation, and color regression—tested on both synthetic and real-world datasets.
 
-![Experimental Setup of Color Vision Tasks](Beyond-sRGB-and-HSV-Why-HVI-is-the-Future-of-Low-Light-Image-Restoration/exp-setup.jpg "Summary of color vision tasks (classification/segmentation/regression) and corresponding datasets used to validate HVI performance")
+![Experimental Setup of Color Vision Tasks](../img/Beyond-sRGB-and-HSV-Why-HVI-is-the-Future-of-Low-Light-Image-Restoration/exp-setup.jpg "Summary of color vision tasks (classification/segmentation/regression) and corresponding datasets used to validate HVI performance")
 
 ### 2.1 Synthetic Dataset: Color-MNIST (Controlled Color Variation)
 A key synthetic dataset—Color-MNIST—was created to isolate the impact of color space design, with three controlled color palettes (high contrast, hue circle, opponent colors) and precise DE (CIELab color distance) measurements to test model sensitivity to subtle color differences.
 
-![Color-MNIST Palettes](Beyond-sRGB-and-HSV-Why-HVI-is-the-Future-of-Low-Light-Image-Restoration/color-mnist.jpg "High Contrast/Hue Circle/Opponent color palettes used to generate Color-MNIST, with DE controlled to test color sensitivity")
+![Color-MNIST Palettes](../img/Beyond-sRGB-and-HSV-Why-HVI-is-the-Future-of-Low-Light-Image-Restoration/color-mnist.jpg "High Contrast/Hue Circle/Opponent color palettes used to generate Color-MNIST, with DE controlled to test color sensitivity")
 
 This synthetic dataset eliminated real-world variables (e.g., lighting, noise) to prove that HVI’s design—rather than post-processing—was the root cause of its superior performance.
 
@@ -46,29 +46,29 @@ To validate real-world applicability, experiments were extended to three high-qu
 ### 3.1 Object Color Classification (VCoR Dataset)
 On the VCoR vehicle color dataset, HVI-powered models achieved a 19% higher accuracy than sRGB and 22% higher than HSV, with far fewer "off-by-one" color misclassifications (e.g., confusing "dark blue" with "black").
 
-![Vehicle Color Recognition Dataset](Beyond-sRGB-and-HSV-Why-HVI-is-the-Future-of-Low-Light-Image-Restoration/vehicle-color.jpg "Real-world samples from VCoR vehicle color dataset (15 color classes) tested in low-light conditions")
+![Vehicle Color Recognition Dataset](../img/Beyond-sRGB-and-HSV-Why-HVI-is-the-Future-of-Low-Light-Image-Restoration/vehicle-color.jpg "Real-world samples from VCoR vehicle color dataset (15 color classes) tested in low-light conditions")
 
 Critical insight: HVI’s logarithmic luminance channel preserved color distinctions in low light, while sRGB/HSV merged similar colors into a single bin.
 
 ### 3.2 Local Attribute Color Classification (Google Cartoon Set)
 For fine-grained tasks like cartoon face eye/hair/skin color classification, HVI reduced misclassification by 27% compared to sRGB and 31% compared to HSV—proving its ability to capture subtle chromatic variations even in noisy, low-light conditions.
 
-![Cartoon Face Color Classification](Beyond-sRGB-and-HSV-Why-HVI-is-the-Future-of-Low-Light-Image-Restoration/cartoon-face.jpg "Eye/hair/skin color labeled samples from Google Cartoon Set, testing fine-grained color discrimination in low light")
+![Cartoon Face Color Classification](../img/Beyond-sRGB-and-HSV-Why-HVI-is-the-Future-of-Low-Light-Image-Restoration/cartoon-face.jpg "Eye/hair/skin color labeled samples from Google Cartoon Set, testing fine-grained color discrimination in low light")
 
 ### 3.3 Color Object Segmentation (visuAAL Dataset)
 At the pixel level (skin segmentation), HVI outperformed sRGB/HSV by 16% in IoU (Intersection over Union), with cleaner segmentation boundaries and no false positives (e.g., misclassifying dark clothing as skin).
 
-![Skin Segmentation Dataset](Beyond-sRGB-and-HSV-Why-HVI-is-the-Future-of-Low-Light-Image-Restoration/skin-seg.jpg "Original low-light images (top) and skin segmentation ground truth (bottom) from the visuAAL Dataset")
+![Skin Segmentation Dataset](../img/Beyond-sRGB-and-HSV-Why-HVI-is-the-Future-of-Low-Light-Image-Restoration/skin-seg.jpg "Original low-light images (top) and skin segmentation ground truth (bottom) from the visuAAL Dataset")
 
 ### 3.4 Neuron Color Selectivity: Why HVI Works
 To understand HVI’s superiority, researchers analyzed the color selectivity of model neurons (ResNet-18, DINOv2, ViT) across color spaces. HVI-aligned models showed broader, more stable color selectivity ranges—matching the human visual system—while sRGB/HSV-aligned models had narrow, noisy selectivity (prone to misclassification in low light).
 
-![Neuron Color Selectivity Analysis](Beyond-sRGB-and-HSV-Why-HVI-is-the-Future-of-Low-Light-Image-Restoration/color-selectivity.jpg "Color selectivity properties (single/double color range width/angle) of ResNet-18, DINOv2 and ViT across sRGB/HSV/HVI")
+![Neuron Color Selectivity Analysis](../img/Beyond-sRGB-and-HSV-Why-HVI-is-the-Future-of-Low-Light-Image-Restoration/color-selectivity.jpg "Color selectivity properties (single/double color range width/angle) of ResNet-18, DINOv2 and ViT across sRGB/HSV/HVI")
 
 ### 3.5 ColSelBoost Optimization: Further Enhancing HVI
 A lightweight optimization—ColSelBoost—was applied to HVI-aligned models, reducing "off-by-one" errors in skin color recognition by 36% (from 18% to 11.5%) with no additional training.
 
-![ColSelBoost Effect Comparison](Beyond-sRGB-and-HSV-Why-HVI-is-the-Future-of-Low-Light-Image-Restoration/colselboost-cm.jpg "Confusion matrices: DINOv2-g (left) vs DINOv2-g+ColSelBoost (right) for skin color recognition in low light")
+![ColSelBoost Effect Comparison](../img/Beyond-sRGB-and-HSV-Why-HVI-is-the-Future-of-Low-Light-Image-Restoration/colselboost-cm.jpg "Confusion matrices: DINOv2-g (left) vs DINOv2-g+ColSelBoost (right) for skin color recognition in low light")
 
 ## 4. Conclusion: Why HVI Is the Future of Low-Light Imaging
 Traditional color spaces like sRGB and HSV are relics of CRT monitor technology—optimized for bright, controlled environments, not the low-light challenges of modern CV. HVI’s human-vision-inspired design addresses these flaws by:
