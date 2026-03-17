@@ -1,17 +1,17 @@
 # cSpell:ignore darkmode
 menu:
   Home: / || fas fa-home
-  Projects: /projects/ || fas fa-code  # 项目展示页（替代测试页）
+  Projects: /projects/ || fas fa-code
   Archives: /archives/ || fas fa-archive
   Tags: /tags/ || fas fa-tags
   Categories: /categories/ || fas fa-folder-open
   About: /about/ || fas fa-user
 
-# 全局背景相关（核心保留）
-index_img: /img/bg.jpg.jpg                # 首页顶部图
-background: url(/img/bg.jpg.jpg)         # 全局底层背景图
-background_dark: url(/img/bg.jpg.jpg)    # 深色模式背景图
-background_style: "background-attachment: fixed; background-size: cover; background-repeat: no-repeat;"  # 背景图全屏固定
+# 全局背景相关
+index_img: /img/bg.jpg.jpg
+background: url(/img/bg.jpg.jpg)
+background_dark: url(/img/bg.jpg.jpg)
+background_style: "background-attachment: fixed; background-size: cover; background-repeat: no-repeat;"
 
 subtitle:
   enable: true  
@@ -29,14 +29,22 @@ darkmode:
 # 头像配置
 avatar:
   img: /img/avatar.jpg.jpg
-  rounded: true        # 圆形头像
-  opacity: 1           # 透明度
-  zoom: true           # 鼠标悬浮放大
+  rounded: true
+  opacity: 1
+  zoom: true
 
+# 1. 社交链接：这里必须先定义 github（注意全是小写，这是 key）
 social:
-  GitHub: https://github.com/djdj-student || fab fa-github
-  
-# CSS注入（保留半透明白卡片效果）
+  github: https://github.com/djdj-student || fab fa-github
+
+# 2. Follow Me：这里是调用上面的 key
+follow_me:
+  enable: true
+  # 重点：这里的 github 必须和上面 social 里的 github 名字一模一样
+  github: true 
+
+
+# CSS注入
 inject:
   head:
     - <link rel="stylesheet" href="/css/custom.css">

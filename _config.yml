@@ -97,6 +97,9 @@ ignore:
 ## Plugins: https://hexo.io/plugins/
 ## Themes: https://hexo.io/themes/
 theme: butterfly
+theme_config:
+  social:
+    fab fa-github: https://github.com/djdj-student || Github
 
 # Deployment
 ## Docs: https://hexo.io/docs/one-command-deployment

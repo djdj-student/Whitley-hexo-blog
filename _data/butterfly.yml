@@ -1,0 +1,8 @@
+social:
+  github: https://github.com/djdj-student || fab fa-github
+
+# 2. Follow Me：这里是调用上面的 key
+follow_me:
+  enable: true
+  # 重点：这里的 github 必须和上面 social 里的 github 名字一模一样
+  github: true 
