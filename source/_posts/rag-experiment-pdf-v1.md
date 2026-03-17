@@ -8,6 +8,8 @@ comments: true
 top_img: /img/rag-pdf-bg.jpg
 ---
 
+Project Source Code: 🚀 GitHub Repository: AI_RAG_PROJECT
+
 ## 1. Background & Environment Setup
 
 ### 1.1 Why RAG + PDF Research Papers?
