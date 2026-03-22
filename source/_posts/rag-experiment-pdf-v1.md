@@ -8,7 +8,7 @@ comments: true
 top_img: /img/rag-pdf-bg.jpg
 ---
 
-Project Source Code: 🚀 GitHub Repository: https://github.com/djdj-student/AI_RAG_PROJECT
+Project Source Code: 🚀 GitHub Repository: https://github.com/djdj-student/rag-based-qa-system
 
 ## 1. Background & Environment Setup
 

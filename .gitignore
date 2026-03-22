@@ -1,1 +1,7 @@
 public/
+node_modules/
+.deploy_git/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+.DS_Store

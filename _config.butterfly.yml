@@ -8,9 +8,10 @@ menu:
   About: /about/ || fas fa-user
 
 # 全局背景相关
-index_img: /img/bg.jpg.jpg
-background: url(/img/bg.jpg.jpg)
-background_dark: url(/img/bg.jpg.jpg)
+# 修正：将 .jpg.jpg 统一改为 .jpg（前提是你的 source/img 文件夹下的文件确实叫 bg.jpg）
+index_img: /img/bg.jpg
+background: url(/img/bg.jpg)
+background_dark: url(/img/bg.jpg)
 background_style: "background-attachment: fixed; background-size: cover; background-repeat: no-repeat;"
 
 subtitle:
@@ -27,24 +28,24 @@ darkmode:
   button: true  
 
 # 头像配置
+# 修正：同样去掉多余的 .jpg 后缀
 avatar:
-  img: /img/avatar.jpg.jpg
+  img: /img/avatar.jpg
   rounded: true
   opacity: 1
   zoom: true
 
-# 1. 社交链接：这里必须先定义 github（注意全是小写，这是 key）
+# 1. 社交链接
 social:
   github: https://github.com/djdj-student || fab fa-github
 
-# 2. Follow Me：这里是调用上面的 key
+# 2. Follow Me
 follow_me:
   enable: true
-  # 重点：这里的 github 必须和上面 social 里的 github 名字一模一样
+  # 保持一致，这里没问题
   github: true 
 
-
-# CSS注入
+# CSS 注入
 inject:
   head:
     - <link rel="stylesheet" href="/css/custom.css">

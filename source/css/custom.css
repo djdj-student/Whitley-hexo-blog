@@ -32,5 +32,5 @@ html,
 
 /* 全局背景图 */
 body {
-  background: url(/img/bg.jpg.jpg) fixed center/cover no-repeat !important;
+  background: url(/img/bg.jpg) fixed center/cover no-repeat !important;
 }
