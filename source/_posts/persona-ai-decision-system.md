@@ -19,9 +19,7 @@ Most LLM applications are optimized for *fluency*: you ask a question, the model
 
 This post describes a **persona-driven decision system** that treats a decision as a *multi-stage pipeline* rather than a single model response. The core idea is simple: force the system to generate and preserve **inspectable intermediate artifacts** (structured verdicts, confidence, risk, rebuttals, evaluation scores), then aggregate those artifacts into a final recommendation together with a measurable **conflict index**.
 
-Because the full experiment code is not included in this blog workspace snapshot, I will present a **reference implementation sketch** (data contracts + pseudocode) that is faithful to the system design. The focus is on *engineering decisions*, reproducible structures, and how each stage reduces a specific failure mode.
-
-## 1. Introduction: Why a “Decision System” (Not a Chatbot)
+## 1. Introduction: Why a “Decision System” Not a Chatbot
 
 Decisions are a different class of problem than “answer my question.” For a decision to be useful in practice, it must provide:
 
@@ -476,15 +474,7 @@ Next steps that are most valuable in practice:
 
 ## 中文讲解
 
-0.摘要
-
-多数大模型应用优化的是“流畅度”：你提出问题，模型给出一段连贯的文字，然后交互结束。对于信息检索或起草文本，这种交互模式往往足够；但对于决策类问题，它通常不够，因为决策需要读者理解“为什么这样建议”“考虑过哪些备选方案”“在存在分歧时结论到底稳不稳”。
-
-本文描述一种人格驱动的决策系统：把一次决策视为多阶段流水线，而不是一次模型回复。其核心思想很简单：强制系统生成并保留可检查的中间产物（结构化裁决、置信度、风险、反驳、评估分数等），再把这些产物聚合成最终建议，并同时给出可量化的冲突指数。
-
-由于这份博客工作区快照并未包含完整实验代码，本文将用“参考实现骨架”（数据契约+伪代码）来忠实表达系统设计；重点放在工程取舍、可复现结构，以及每个阶段分别缓解哪一类失败模式。
-
-1.引言：为什么是“决策系统”（而不是聊天机器人）
+1.引言：为什么是“决策系统”而不是聊天机器人
 
 决策和“回答问题”是两类不同的问题。要让一个决策在实践中可用，它至少要提供三种能力：
 
