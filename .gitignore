@@ -6,6 +6,9 @@ yarn-debug.log*
 yarn-error.log*
 .DS_Store
 
+# hexo generated cache
+db.json
+
 # env files (never commit secrets)
 .env
 .env.*
