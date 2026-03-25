@@ -5,7 +5,7 @@ tags: [RAG, LLM, Agent, Policy]
 categories: [AI_Engineering]
 mathjax: false
 comments: true
-top_img: /img/bg.jpg
+top_img: /img/greenhub-rag/bg.jpg
 ---
 
 > 说明：本文以“GreenPolicyHub = 面向绿色/双碳/环保政策的检索与解读知识库”这一最小可用定义撰写。如果你的 GreenPolicyHub 有更具体的目标用户、数据源或功能边界（例如只做中国政策、只做 EU/US 监管，或强调合规审计/申报填报），告诉我 2-3 句，我可以再把文章替换得更贴合。
