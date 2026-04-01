@@ -10,6 +10,10 @@ top_img: /img/greenhub-rag/bg.jpg
 
 Project Source Code: 🚀 GitHub Repository: https://github.com/djdj-student/greenpolicy_cited_rag
 
+## Update Log
+
+- 2026-04-01: Refined wording in key sections and synchronized the post for repository publishing.
+
 ## English Version
 
 ## Abstract
